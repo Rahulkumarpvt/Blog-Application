@@ -3,6 +3,7 @@ import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { Navigate } from "react-router-dom";
 import Editor from "../Editor";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
@@ -18,7 +19,7 @@ export default function CreatePost() {
     data.set("file", files[0]);
     e.preventDefault();
     // console.log(files);
-    const response = await fetch("http://localhost:3000/post", {
+    const response = await fetch(`${apiURL}/post`, {
       method: "POST",
       body: data,
       credentials: "include",

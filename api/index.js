@@ -10,19 +10,19 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
+require("dotenv").config();
 
 const salt = bcrypt.genSaltSync(10);
-const secret = "ifhwoo238y820jht291-14070knmb2@!%^*#()-+-_";
+const secret = process.env.secret;
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: process.env.clientURL }));
+// app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 mongoose
-  .connect(
-    "mongodb+srv://blog:gE4BYI62ahckLepC@cluster0.me2ms.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.password)
   .then(() => console.log("Database connected"))
   .catch((err) => console.error("Database connection error:", err));
 

@@ -1,6 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "../Editor";
 import { useEffect, useState } from "react";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function EditPost() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ export default function EditPost() {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/post/" + id).then((response) => {
+    fetch(`${apiURL}/post/` + id).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setSummary(postInfo.summary);
@@ -30,7 +31,7 @@ export default function EditPost() {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch("http://localhost:3000/post", {
+    const response = await fetch(`${apiURL}/post`, {
       method: "PUT",
       body: data,
       credentials: "include",

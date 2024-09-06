@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+const apiURL = import.meta.env.VITE_API_URL;
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -9,7 +10,7 @@ export default function LoginPage() {
   const { setUserInfo } = useContext(UserContext);
   async function login(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch(`${apiURL}/login`, {
       method: "Post",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },

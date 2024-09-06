@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "./UserContext";
-
+const apiURL = import.meta.env.VITE_API_URL;
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
-    fetch("http://localhost:3000/profile", {
+    fetch(`${apiURL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((userInfo) => {
@@ -15,7 +15,7 @@ export default function Header() {
   }, []);
 
   function logout() {
-    fetch("http://localhost:3000/logout", {
+    fetch(`${apiURL}/logout`, {
       credentials: "include",
       method: "POST",
     });

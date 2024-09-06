@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Post from "../post";
+const apiURL = import.meta.env.VITE_API_URL;
+
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/post").then((response) => {
+    fetch(`${apiURL}/post`).then((response) => {
       response.json().then((posts) => {
         setPosts(posts);
       });
