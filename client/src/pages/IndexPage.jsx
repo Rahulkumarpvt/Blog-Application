@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Post from "../post";
+import Post from "../Post";
 const apiURL = import.meta.env.VITE_API_URL;
 
 export default function IndexPage() {
