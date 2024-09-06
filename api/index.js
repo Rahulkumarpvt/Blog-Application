@@ -15,8 +15,8 @@ require("dotenv").config();
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.secret;
 
-app.use(cors({ credentials: true, origin: process.env.clientURL }));
-// app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+// app.use(cors({ credentials: true, origin: process.env.clientURL }));
+app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
